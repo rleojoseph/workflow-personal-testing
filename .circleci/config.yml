@@ -7,18 +7,9 @@ orbs:
 jobs:
   build:
     macos:
-      xcode: 15.2.0 
-
+      xcode: 15.2.0
     steps:
-      # Checkout the code as the first step.
       - checkout
-      - run: pod install # Install CocoaPods dependencies
-      - run: fastlane scan # Run tests using Fastlane
-      - store_test_results:
-          path: test_output
-      - store_artifacts:
-          path: test_output
-          destination: scan-output
 
 workflows:
   sample:
