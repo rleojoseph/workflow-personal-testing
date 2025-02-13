@@ -15,14 +15,15 @@ jobs:
       xcode: 15.2.0
     parameters:
       run_integration_tests:
-        type: boolean      
+        type: boolean
     steps:
       - checkout
       - print:
-          message: Printing << parameters.message >>
+          message: Printing << parameters.run_integration_tests >>
 
 workflows:
+  version: 2
   sample:
-    when: << pipeline.parameters.run_integration_tests >>
     jobs:
-      - build
+      - build:
+          context: << pipeline.parameters.run_integration_tests >>
