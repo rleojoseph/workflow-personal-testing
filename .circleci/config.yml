@@ -3,15 +3,26 @@ orbs:
   node: circleci/node@4.3
   gh: circleci/github-cli@1.0.4
   macos: circleci/macos@2.3.6
+
+parameters:
+  message:
+    type: string
+    default: "Hello World"
   
 jobs:
   build:
     macos:
       xcode: 15.2.0
+    parameters:
+      message:
+        type: string      
     steps:
       - checkout
+      - print:
+          message: Printing << parameters.message >>
 
 workflows:
   sample:
     jobs:
-      - build
+      - build:
+          message: echo << parameters.message >>
