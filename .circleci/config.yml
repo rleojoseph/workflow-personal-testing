@@ -26,4 +26,5 @@ workflows:
   sample:
     jobs:
       - build:
-          context: << pipeline.parameters.run_integration_tests >>
+          parameters:
+            run_integration_tests: << pipeline.parameters.run_integration_tests >>
