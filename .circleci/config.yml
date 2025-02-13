@@ -7,8 +7,8 @@ orbs:
 parameters:
   run_integration_tests:
     type: boolean
-    default: false
-  
+    default: true
+
 jobs:
   build:
     macos:
@@ -18,9 +18,15 @@ jobs:
         type: boolean
     steps:
       - checkout
+      - when:
+          condition: << parameters.run_integration_tests >>
+          steps:
+            - run:
+                name: Print integration test flag
+                command: echo "Integration tests are enabled"
       - run:
-          name: Print integration test flag
-          command: echo "Printing << parameters.run_integration_tests >>"
+          name: Default step
+          command: echo "This step always runs"
 
 workflows:
   version: 2
