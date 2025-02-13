@@ -18,8 +18,9 @@ jobs:
         type: boolean
     steps:
       - checkout
-      - print:
-          message: Printing << parameters.run_integration_tests >>
+      - run:
+          name: Print integration test flag
+          command: echo "Printing << parameters.run_integration_tests >>"
 
 workflows:
   version: 2
