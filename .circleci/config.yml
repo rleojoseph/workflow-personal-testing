@@ -5,17 +5,17 @@ orbs:
   macos: circleci/macos@2.3.6
 
 parameters:
-  message:
-    type: string
-    default: "Hello World"
+  run_integration_tests:
+    type: boolean
+    default: false
   
 jobs:
   build:
     macos:
       xcode: 15.2.0
     parameters:
-      message:
-        type: string      
+      run_integration_tests:
+        type: boolean      
     steps:
       - checkout
       - print:
@@ -23,6 +23,6 @@ jobs:
 
 workflows:
   sample:
+    when: << pipeline.parameters.run_integration_tests >>
     jobs:
-      - build:
-          message: echo << parameters.message >>
+      - build
