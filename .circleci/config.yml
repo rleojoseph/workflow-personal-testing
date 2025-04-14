@@ -26,7 +26,13 @@ jobs:
                 command: echo "Integration tests are enabled"
       - run:
           name: Default step
-          command: echo "This step always runs"
+          command: |
+            echo "This step always runs"
+            echo "Workflow ID: $CIRCLE_WORKFLOW_ID"
+            echo "Pipeline ID: $CIRCLE_PIPELINE_ID"
+            echo "Build Number: $CIRCLE_BUILD_NUM"
+            echo "Job Name: $CIRCLE_JOB"
+            echo "Workflow Job ID: $CIRCLE_WORKFLOW_JOB_ID"
 
 workflows:
   version: 2
